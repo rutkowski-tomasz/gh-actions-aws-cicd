@@ -11,7 +11,8 @@ on:
       - '.github/workflows/dotnet-ecs.actions.yml'
 
 jobs:
-  build:
+  run-unit-tests:
+    name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -25,3 +26,12 @@ jobs:
       working-directory: Rt.Dotnet.EcsApi
       run: |
         dotnet test
+
+  build-docker-image:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      working-directory: Rt.Dotnet.EcsApi
+      run: docker build . --file Rt.Dotnet.EcsApi/Dockerfile --tag rt-dotnet-ecsapi:$(date +%s)
