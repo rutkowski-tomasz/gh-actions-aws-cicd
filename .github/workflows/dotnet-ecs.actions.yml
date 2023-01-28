@@ -1,10 +1,14 @@
-name: .NET CI
+name: Dotnet to ECS
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - main
+      - 'feature/**'
+      - 'bug/**'
+    paths:
+      - 'Rt.Dotnet.EcsApi/**'
+      - '.github/workflows/dotnet-ecs.actions.yml'
 
 jobs:
   build:
