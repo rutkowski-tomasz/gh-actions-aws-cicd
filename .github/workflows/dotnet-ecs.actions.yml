@@ -26,6 +26,11 @@ jobs:
       working-directory: Rt.Dotnet.EcsApi
       run: |
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+    - name: Publish code coverage report
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: Rt.Dotnet.EcsApi/TestResults/coverage.info
 
   build-docker-image:
     name: Build Docker Image
