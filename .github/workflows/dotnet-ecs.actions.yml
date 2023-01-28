@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: | 
           7.x
-    - run: echo '${{ steps.stepid.outputs.dotnet-version }}'
     - name: Run Unit Tests
+      working-directory: Rt.Dotnet.EcsApi
       run: |
         dotnet test
